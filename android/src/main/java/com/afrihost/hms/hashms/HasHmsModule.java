@@ -1,6 +1,9 @@
 package com.afrihost.hms.hashms;
 
 import android.util.Log;
+import android.widget.Toast;
+import android.content.Context;
+
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
