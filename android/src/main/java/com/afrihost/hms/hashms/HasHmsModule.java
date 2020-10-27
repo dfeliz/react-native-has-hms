@@ -22,7 +22,7 @@ public class HasHmsModule extends ReactContextBaseJavaModule {
 
     @Override
     public String getName() {
-        return "HMSBase";
+        return "HasHms";
     }
 
     @ReactMethod
