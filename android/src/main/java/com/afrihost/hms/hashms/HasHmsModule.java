@@ -22,20 +22,35 @@ public class HasHmsModule extends ReactContextBaseJavaModule {
 
     @Override
     public String getName() {
-        return "HasHms";
+        return "HMSBase";
     }
 
     @ReactMethod
-    public void isHMSAvailable(Promise promise) {
-        HuaweiApiAvailability hms = HuaweiApiAvailability.getInstance();
-        int isHMS = hms.isHuaweiMobileServicesAvailable(mContext);
-        promise.resolve(isHMS == ConnectionResult.SUCCESS);
+    public void getPackageName() {
+        Toast.makeText(getReactApplicationContext(),"HasHms has been called",Toast.LENGTH_LONG).show();
     }
 
     @ReactMethod
-    public void isGMSAvailable(Promise promise) {
-        GoogleApiAvailability gms = GoogleApiAvailability.getInstance();
-        int isGMS = gms.isGooglePlayServicesAvailable(mContext);
-        promise.resolve(isGMS == ConnectionResult.SUCCESS);
+    public void isHmsAvailable(Callback booleanCallback) {
+        boolean isAvailable = false;
+        Context context = getReactApplicationContext();
+        if (null != context) {
+            int result = HuaweiApiAvailability.getInstance().isHuaweiMobileServicesAvailable(context);
+            isAvailable = (com.huawei.hms.api.ConnectionResult.SUCCESS == result);
+        }
+        Log.i("React", "isHmsAvailable: " + isAvailable);
+        booleanCallback.invoke(isAvailable);
+    }
+
+    @ReactMethod
+    public void isGmsAvailable(Callback booleanCallback) {
+        boolean isAvailable = false;
+        Context context = getReactApplicationContext();
+        if (null != context) {
+            int result = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context);
+            isAvailable = (com.google.android.gms.common.ConnectionResult.SUCCESS == result);
+        }
+        Log.i("React",  "isGmsAvailable: " + isAvailable);
+        booleanCallback.invoke(isAvailable);
     }
 }
