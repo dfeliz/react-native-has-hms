@@ -29,6 +29,11 @@ public class HasHmsModule extends ReactContextBaseJavaModule {
         return "HasHms";
     }
 
+    @Override    
+    public boolean canOverrideExistingModule() {
+        return true;    
+    }
+
     @ReactMethod
     public void getPackageName() {
         Toast.makeText(getReactApplicationContext(),"HasHms has been called",Toast.LENGTH_LONG).show();
